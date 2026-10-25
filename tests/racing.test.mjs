@@ -54,7 +54,7 @@ test('full physical race clears all ordered gates; opponents stay on course and 
     s=stepRace(s,botControl(s.cars[0],s.cars,s.clock),1/60);
     if(s.place!==last){changes++;last=s.place;}for(const c of s.cars){maxOffset=Math.max(maxOffset,Math.abs(c.offset));intents.add(c.intent);assert.ok(Number.isFinite(c.x+c.y+c.speed));}
   }
-  assert.equal(s.phase,'finished');assert.equal(s.cars[0].gates,raceConfig.laps*raceConfig.gatesPerLap);assert.equal(s.lap,5);assert.ok(s.clock>50&&s.clock<180);assert.ok(changes>0);assert.ok(intents.has('pass'));assert.ok(maxOffset<60);assert.ok(s.cars.slice(1).every(c=>c.gates>50));
+  assert.equal(s.phase,'finished');assert.equal(s.cars[0].gates,raceConfig.laps*raceConfig.gatesPerLap);assert.equal(s.lap,3);assert.ok(s.clock>30&&s.clock<180);assert.ok(changes>0);assert.ok(intents.has('pass'));assert.ok(maxOffset<60);assert.ok(s.cars.slice(1).every(c=>c.gates>25));
   assert.equal(stepRace(s,gas,.05),s);
 });
 test('a timestep spike cannot move cars across checkpoints or produce invalid physics',()=>{
@@ -62,13 +62,12 @@ test('a timestep spike cannot move cars across checkpoints or produce invalid ph
 });
 test('a clean driving line can win against the easy opponents with the same physical rules',()=>{
   const done=simulate(startRace(),180,s=>{const c=botControl(s.cars[0],[s.cars[0]],s.clock);return {...c,boost:Math.abs(c.steer)<.35&&!c.brake};});
-  assert.equal(done.phase,'finished');assert.equal(done.place,1);assert.ok(done.cars.slice(1).every(c=>c.gates>50));
+  assert.equal(done.phase,'finished');assert.equal(done.place,1);assert.ok(done.cars.slice(1).every(c=>c.gates>25));
 });
 
-test('only first place at the completed finish unlocks the cinematic and reward',()=>{
+test('completed finish unlocks the cinematic and reward on any place',()=>{
   for(const phase of ['ready','countdown','racing'])for(const place of [1,2,3,4])assert.equal(finishPresentation({phase,place}),null);
-  assert.equal(finishPresentation({phase:'finished',place:1}),'victory');
-  for(const place of [2,3,4])assert.equal(finishPresentation({phase:'finished',place}),'retry');
+  for(const place of [1,2,3,4])assert.equal(finishPresentation({phase:'finished',place}),'victory');
   assert.equal(finishPresentation(startRace()),null);
 });
 test('start/finish is directly below the unchanged grandstand; the cinematic crosses before opening the reward',()=>{

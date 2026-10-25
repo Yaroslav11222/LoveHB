@@ -1,7 +1,7 @@
 import { track, trackPoint, projectToTrack, wrap } from './track.ts';
 
 export const raceConfig = {
-  laps: 5, speed: 211, boostSpeed: 263, botSpeeds: [155, 150, 145], countdown: 3,
+  laps: 3, speed: 211, boostSpeed: 263, botSpeeds: [155, 150, 145], countdown: 3,
   acceleration: 145, braking: 285, rollingDrag: 32, grip: 9, steeringRate: 2.9,
   boostDrain: .3, boostRecharge: .10, gatesPerLap: 16,
 };
