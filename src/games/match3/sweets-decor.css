@@ -1,0 +1,9 @@
+.sweet-world:has(>.sweets-decor){isolation:isolate}
+.sweet-world:has(>.sweets-decor)>.sweet-play-area{z-index:1}
+.sweets-decor{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;contain:layout style}
+.sweets-decor__ornament{position:absolute;left:var(--x);top:var(--y);width:var(--size);translate:-50% -50%;transform:rotate(var(--turn));opacity:.85;filter:sepia(.08) drop-shadow(3px 12px 12px #ad826820);animation:sweets-decor-float 9s ease-in-out infinite;animation-delay:var(--delay)}
+.sweets-decor__ornament img{display:block;width:100%;height:auto;user-select:none}
+@keyframes sweets-decor-float{0%,100%{transform:translateY(0) rotate(var(--turn))}50%{transform:translateY(-13px) rotate(calc(var(--turn) + 5deg))}}
+@media(max-width:1100px){.sweets-decor__ornament{width:calc(var(--size) * .6)}}
+@media(max-width:850px){.sweets-decor__ornament{display:none}.sweets-decor__ornament:first-child{display:block;left:auto;right:14px;top:30px;width:45px;translate:0;opacity:.65}}
+@media(prefers-reduced-motion:reduce){.sweets-decor__ornament{animation:none}}

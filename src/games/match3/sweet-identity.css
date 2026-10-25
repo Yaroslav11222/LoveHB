@@ -1,0 +1,10 @@
+/* Preserve the foods; emphasize their natural silhouettes through presentation.
+   Applied to the artwork only, so power badges and collection animations stay upright. */
+.sweet-piece[data-sweet="bar"] > img,
+.sweet-goal[data-sweet="bar"] > img {
+  rotate: -32deg;
+  scale: .88;
+}
+.sweet-piece[data-sweet="spread"] > img { scale: .95; }
+.sweet-piece[data-sweet="fondant"] > img { scale: .91; }
+.sweet-piece[data-sweet="blueberry"] > img { scale: .87; }

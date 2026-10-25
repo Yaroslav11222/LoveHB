@@ -1,0 +1,222 @@
+/* ─── Sweet Match-3 Victory Cinematic ────────────────────────────────────────── */
+
+.sweet-victory-root {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 50% 45%, #fff6f8 0%, #fae6ec 55%, #eed2db 100%);
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.sweet-victory-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Confection pixel/bubble curtain */
+.sweet-victory-curtain {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 4px;
+    padding: 12px;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.sweet-victory-curtain i {
+    background: radial-gradient(circle, rgba(255, 230, 238, .75) 0%, rgba(246, 206, 220, .45) 60%, transparent 100%);
+    border-radius: 50%;
+    transform: scale(0);
+}
+
+/* Gift stage */
+.sweet-gift-stage {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    outline: none;
+    background: none;
+    border: none;
+    padding: 24px;
+    transform-origin: center bottom;
+}
+
+.sweet-gift-aura {
+    position: absolute;
+    width: 440px;
+    height: 440px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 215, 228, .85) 0%, rgba(255, 235, 242, .45) 45%, transparent 70%);
+    filter: blur(32px);
+    z-index: -2;
+    animation: gift-aura-pulse 3.6s ease-in-out infinite alternate;
+}
+
+@keyframes gift-aura-pulse {
+    0% { transform: scale(.88); opacity: .55; }
+    100% { transform: scale(1.18); opacity: .95; }
+}
+
+.sweet-gift-shadow {
+    position: absolute;
+    bottom: 36px;
+    width: 250px;
+    height: 32px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(180, 120, 140, .32) 0%, rgba(180, 120, 140, .08) 55%, transparent 75%);
+    filter: blur(8px);
+    z-index: -1;
+    transition: transform .4s ease, opacity .4s ease;
+}
+
+.sweet-gift-box-wrap {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    animation: gift-float 3.8s ease-in-out infinite;
+    transform-origin: center bottom;
+}
+
+@keyframes gift-float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-14px) rotate(-1.5deg);
+    }
+}
+
+.sweet-gift-stage:hover .sweet-gift-box-wrap,
+.sweet-gift-stage:focus-visible .sweet-gift-box-wrap {
+    animation-play-state: paused;
+    transform: translateY(-16px) scale(1.05);
+}
+
+.sweet-gift-stage:hover .sweet-gift-shadow,
+.sweet-gift-stage:focus-visible .sweet-gift-shadow {
+    transform: scale(0.92);
+    opacity: 0.65;
+}
+
+.sweet-gift-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 14px 28px rgba(190, 125, 145, .22));
+    overflow: visible;
+}
+
+/* Sparkles orbiting the gift */
+.sweet-gift-sparkles {
+    position: absolute;
+    inset: -30px;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.sweet-gift-sparkle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #fffdf8 20%, #fbd89a 70%, transparent 100%);
+    clip-path: polygon(50% 0%, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%, 0% 50%, 35% 35%);
+    opacity: 0;
+    animation: sparkle-twinkle 2.8s ease-in-out infinite;
+}
+
+.sweet-gift-sparkle:nth-child(1) { left: 12%; top: 22%; animation-delay: 0s; }
+.sweet-gift-sparkle:nth-child(2) { right: 14%; top: 18%; animation-delay: 0.7s; }
+.sweet-gift-sparkle:nth-child(3) { left: 8%; bottom: 32%; animation-delay: 1.4s; }
+.sweet-gift-sparkle:nth-child(4) { right: 10%; bottom: 28%; animation-delay: 2.1s; }
+.sweet-gift-sparkle:nth-child(5) { left: 48%; top: 4%; animation-delay: 1.0s; }
+
+@keyframes sparkle-twinkle {
+    0%, 100% { opacity: 0; transform: scale(.4) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.2) rotate(45deg); }
+}
+
+/* Immersive radiant light burst on open */
+.sweet-gift-burst {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 25;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+}
+
+.sweet-gift-beam {
+    position: absolute;
+    width: 140px;
+    height: 480px;
+    background: radial-gradient(ellipse at center bottom, rgba(255, 255, 245, .98) 0%, rgba(255, 230, 242, .75) 45%, transparent 80%);
+    filter: blur(16px);
+    transform-origin: center bottom;
+    opacity: 0;
+}
+
+.sweet-gift-glow-ring {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 250, 240, .9) 0%, rgba(255, 220, 235, .5) 50%, transparent 75%);
+    filter: blur(20px);
+    opacity: 0;
+}
+
+/* Fullscreen immersion flash / depth overlay */
+.sweet-immersion-flash {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 248, 250, 0.9) 0%, rgba(252, 228, 236, 0.95) 60%, rgba(246, 212, 224, 1) 100%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+}
+
+/* Skip & actions */
+.sweet-victory-skip {
+    position: absolute;
+    top: 24px;
+    right: 28px;
+    z-index: 20;
+    background: rgba(255, 255, 255, .7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, .8);
+    border-radius: 999px;
+    padding: 7px 16px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    color: #92586f;
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+}
+
+.sweet-victory-skip:hover {
+    background: #ffffff;
+    transform: scale(1.04);
+}

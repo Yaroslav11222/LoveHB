@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../assets/fonts/cormorant-garamond.ttf') format('truetype');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../assets/fonts/cormorant-garamond-italic.ttf') format('truetype');
+  font-weight: 300 700;
+  font-style: italic;
+  font-display: swap;
+}
+:root {
+  --paper: #fcf5f0;
+  --paper-pink: #fcf1f2;
+  --ink: #654c53;
+  --muted: #987c83;
+  --accent: #b78394;
+  --line: #d9c3c566;
+  --font-body: 'Segoe UI', Arial, sans-serif;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --ease-soft: cubic-bezier(.22,.68,.2,1);
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--font-body);
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+}

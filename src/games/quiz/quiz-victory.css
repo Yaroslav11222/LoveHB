@@ -1,0 +1,89 @@
+/* ─── Quiz Victory Cinematic ────────────────────────────────────────────── */
+.qv-root{position:fixed;inset:0;z-index:999;overflow:hidden;background:#fbf5ee;background-image:radial-gradient(ellipse 85% 65% at 50% 30%,#fffdf8,transparent);isolation:isolate;display:flex;align-items:center;justify-content:center}
+
+/* Full-scene confetti & bubbles canvas */
+.qv-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+
+/* Avocado plant centered, grows in during animation */
+.qv-plant-wrap{position:absolute;bottom:0;left:50%;translate:-50% 0;width:min(55%,340px);pointer-events:none;transform-origin:50% 90%}
+
+/* ─── Pixel tile curtain (warm cream, soft linen, bath comfort) ──────────── */
+.qv-curtain{position:absolute;inset:0;display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(8,1fr);opacity:0;pointer-events:none}
+.qv-curtain i{background:#f8eedf;box-shadow:inset 0 0 16px rgba(255,251,244,0.85);transform:scale(0);opacity:0;border-radius:1px}
+.qv-curtain i:nth-child(3n){background:#fbf3e6}
+.qv-curtain i:nth-child(5n){background:#f4e6d4}
+.qv-curtain i:nth-child(7n){background:#fdf7ed}
+.qv-curtain i:nth-child(4n){background:#eedec8}
+
+/* ─── Mystery prize capsule (BIG, tactile & plush) ───────────────────────── */
+.qv-prize{position:absolute;width:min(84vw,490px);aspect-ratio:1;left:50%;top:43%;translate:-50% -50%;visibility:hidden;opacity:0;isolation:isolate;perspective:1000px}
+.qv-prize__glow{position:absolute;inset:-45%;background:radial-gradient(ellipse,rgba(255,253,245,0.95) 15%,rgba(250,237,214,0.6) 45%,rgba(240,222,195,0.15) 65%,transparent 75%);z-index:-1;pointer-events:none}
+.qv-prize img{display:block;width:100%;height:100%;object-fit:contain;user-select:none}
+
+/* Vertical light flare along center seam right before opening */
+.qv-seam-flare{position:absolute;left:50%;top:6%;bottom:6%;width:10px;translate:-50% 0;background:linear-gradient(180deg,transparent,#ffffff 30%,#fff0ce 70%,transparent);box-shadow:0 0 24px #fff8df,0 0 48px #fcdca4;opacity:0;pointer-events:none;z-index:2;filter:blur(1px)}
+
+/* Shell halves — plush doors swinging open in 3D */
+.qv-prize__half{position:absolute;inset:0;will-change:transform,opacity;transform-style:preserve-3d}
+.qv-prize__half--left{clip-path:polygon(0 0,50.15% 0,50.15% 100%,0 100%);transform-origin:10% 50%}
+.qv-prize__half--right{clip-path:polygon(49.85% 0,100% 0,100% 100%,49.85% 100%);transform-origin:90% 50%}
+
+/* ─── Question mark (large plush warm cream comfort) ─────────────────────── */
+.qv-prize__question{position:absolute;inset:0;opacity:0;filter:drop-shadow(0 16px 36px rgba(160,125,95,0.16))}
+.qv-root--revealed .qv-prize__question{animation:qv-prize-float 5.4s ease-in-out infinite}
+@keyframes qv-prize-float{
+  0%,100%{translate:0 0;rotate:0deg}
+  30%{translate:0 -14px;rotate:1.3deg}
+  70%{translate:0 -5px;rotate:-1deg}
+}
+
+/* Sparkles around question mark */
+.qv-sparkles{position:absolute;inset:0;pointer-events:none}
+.qv-sparkle{
+  position:absolute;left:50%;top:50%;
+  width:6px;height:6px;
+  background:#f9edd8;
+  border-radius:50%;
+  opacity:0;
+  animation:qv-sparkle-out 2.6s ease-out calc(var(--si) * .22s) infinite;
+  transform-origin:0 0;
+  box-shadow:0 0 8px #fffbe6;
+}
+.qv-sparkle:nth-child(2n){background:#f3dfb8;width:5px;height:5px}
+.qv-sparkle:nth-child(3n){background:#fff8eb;width:7px;height:7px}
+@keyframes qv-sparkle-out{
+  0%{opacity:0;transform:rotate(calc(var(--si) * 30deg)) translateY(-10px) scale(.2)}
+  25%{opacity:.95}
+  100%{opacity:0;transform:rotate(calc(var(--si) * 30deg)) translateY(85px) scale(.8)}
+}
+
+/* ─── Skip & Actions (Clean, elegant, no distracting text overlays) ───────── */
+.qv-skip{position:absolute;bottom:16px;right:18px;border:1px solid #d9c4b266;background:#fffaf3ee;color:#947b6a;font:600 10px 'Quiz Nunito',sans-serif;padding:7px 12px;border-radius:4px;cursor:pointer;z-index:3}
+
+.qv-actions{position:absolute;left:0;right:0;bottom:8%;display:flex;flex-direction:column;align-items:center;gap:11px;animation:qv-actions-in .6s cubic-bezier(0.2,0.8,0.2,1) both;z-index:10}
+.qv-primary{background:linear-gradient(145deg,#a08068,#86644e);color:#fffdfa;border:0;border-radius:999px;padding:14px 34px;font:700 13px 'Quiz Nunito',sans-serif;letter-spacing:.02em;cursor:pointer;box-shadow:0 6px 20px rgba(120,85,60,0.22),inset 0 1px 0 rgba(255,255,255,0.25);transition:all .22s ease}
+.qv-primary:hover{background:linear-gradient(145deg,#b19077,#96735c);transform:translateY(-2px);box-shadow:0 8px 24px rgba(120,85,60,0.32)}
+.qv-primary:active{transform:translateY(1px);box-shadow:0 2px 8px rgba(120,85,60,0.2)}
+.qv-secondary{background:none;border:0;color:#8c7262;font:600 12px 'Quiz Nunito',sans-serif;cursor:pointer;text-decoration:underline;text-underline-offset:4px;padding:6px 12px;transition:color .2s ease}
+.qv-secondary:hover{color:#6b5243}
+
+@keyframes qv-actions-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){
+  .qv-sparkle,.qv-root--revealed .qv-prize__question,.qv-actions{animation:none}
+  .qv-canvas{display:none}
+}
+
+/* Desktop */
+@media(min-width:900px){
+  .qv-prize{width:min(72vw,530px);top:42%}
+}
+
+/* Mobile */
+@media(max-width:760px){
+  .qv-plant-wrap{width:min(70%,260px)}
+  .qv-prize{width:min(88vw,360px);top:41%}
+  .qv-actions{bottom:5%}
+  .qv-primary{padding:11px 24px;font-size:12px}
+}

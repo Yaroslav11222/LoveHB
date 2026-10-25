@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production build artifacts
+dist/
+dist-ssr/
+*.local
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
+*.log
+*.log.*
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Large local archives and temporary scratch
+*.zip
+.local/
+MyReferences/
+references/
+docs/
+scripts/
+public/art/portals/backup/
+tests/

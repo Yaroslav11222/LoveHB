@@ -1,0 +1,3 @@
+﻿.birthday-title{position:relative;width:100%;pointer-events:none}.birthday-title .hero-art{display:block;width:100%;height:auto;mix-blend-mode:normal}.hero .hero-message{margin-top:-23px}
+@media(max-width:600px){.hero .hero-message{margin-top:26px}}
+@media(prefers-reduced-motion:reduce){.birthday-title{transform:none!important}}

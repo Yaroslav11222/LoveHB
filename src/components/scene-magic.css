@@ -1,0 +1,16 @@
+.scene-magic{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;contain:layout style}
+.magic-charm-anchor{position:absolute;left:var(--charm-x);top:var(--charm-y);width:var(--charm-size);height:auto}
+.magic-charm{display:block;translate:-50% -50%;transform:rotate(var(--charm-turn));animation:plush-drift 8s ease-in-out infinite;animation-delay:var(--charm-delay);filter:drop-shadow(3px 12px 9px #b87b8c16)}
+.magic-charm img{display:block;width:100%;height:auto;user-select:none}
+.magic-glints,.magic-trail{position:absolute;inset:0}.magic-glints i{position:absolute;left:var(--glint-x);top:var(--glint-y);width:3px;height:3px;border-radius:50%;background:#fffaf4;box-shadow:0 0 8px 2px #f0bfd085;animation:plush-glimmer 6s ease-in-out infinite;animation-delay:var(--glint-delay)}
+.magic-glints i:nth-child(3n){width:12px;height:18px;border-radius:0;clip-path:polygon(50% 0,59% 40%,100% 50%,59% 60%,50% 100%,41% 60%,0 50%,41% 40%);background:radial-gradient(ellipse,#fff 12%,#fff7f4 35%,#eeb3ca 90%);filter:drop-shadow(0 0 4px #ec9dbd);box-shadow:none}
+.magic-trail>span{position:absolute;width:13px;height:18px;opacity:0;will-change:transform,opacity;filter:drop-shadow(0 0 5px #ed9dbd)}
+.magic-trail>span::before{content:'';position:absolute;inset:0;clip-path:polygon(50% 0,59% 40%,100% 50%,59% 60%,50% 100%,41% 60%,0 50%,41% 40%);background:radial-gradient(ellipse,#fff 10%,#fff3f7 35%,#e8a0bc)}
+.scene-magic--portals .magic-charm-anchor{width:calc(var(--charm-size) * .72)}.scene-magic--portals .magic-charm{filter:drop-shadow(2px 7px 7px #bd7e8c20)}
+.scene-magic--garden .magic-charm-anchor{width:calc(var(--charm-size) * .3)}.scene-magic--garden .magic-charm-anchor:nth-child(n+5),.scene-magic--garden .magic-glints i:nth-child(n+9){display:none}.scene-magic--garden{overflow:visible}
+.hero-copy,.portal-grid,.hub-heading,.thread{position:relative;z-index:1}.quiz-garden .avocado-plant,.quiz-garden .quiz-growth{position:relative;z-index:1}
+@keyframes plush-drift{0%,100%{transform:translateY(0) rotate(var(--charm-turn))}50%{transform:translateY(-12px) rotate(calc(var(--charm-turn) + 6deg))}}
+@keyframes plush-glimmer{0%,100%{opacity:.08;transform:scale(.5)}50%{opacity:.7;transform:scale(1.15)}}
+@media(max-width:1100px){.scene-magic--hero .magic-charm-anchor{width:calc(var(--charm-size) * .75)}}
+@media(max-width:600px){.scene-magic .magic-charm-anchor{width:calc(var(--charm-size) * .52)}.scene-magic .magic-charm-anchor:nth-child(n+5){display:none}.magic-glints i:nth-child(n+11){display:none}.scene-magic--garden .magic-charm-anchor{width:calc(var(--charm-size) * .2)}}
+@media(prefers-reduced-motion:reduce){.magic-charm,.magic-glints i{animation:none}.magic-trail{display:none}.magic-glints i{opacity:.3}}
