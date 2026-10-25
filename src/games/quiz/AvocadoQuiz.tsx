@@ -55,9 +55,9 @@ export function AvocadoQuiz({ onExit }: { onExit: () => void }) {
       <aside className={`quiz-garden ${finished ? 'quiz-garden--complete' : ''}`}>
         <SceneMagic variant="garden"/>
         <div className="quiz-garden-frame" aria-hidden="true"/>
-        <AvocadoPlant growth={score}/>
+        <AvocadoPlant growth={[0, 4, 8, 10][score] ?? 10}/>
         {score > 0 && <div key={score} className="quiz-growth-bloom" aria-hidden="true">{Array.from({ length: 8 }, (_, i) => <span key={i} style={{ '--bloom-angle': `${i * 45}deg` } as CSSProperties}/>)}</div>}
-        <div className="quiz-growth" role="progressbar" aria-label="Рост растения за правильные ответы" aria-valuemin={0} aria-valuemax={10} aria-valuenow={score}>
+        <div className="quiz-growth" role="progressbar" aria-label="Рост растения за правильные ответы" aria-valuemin={0} aria-valuemax={QUIZ_LENGTH} aria-valuenow={score}>
           {Array.from({ length: QUIZ_LENGTH }, (_, i) => <span key={i} className={i < score ? 'is-filled' : ''}/>)}
         </div>
       </aside>

@@ -1,8 +1,8 @@
 import { questions } from '../../content/questions.ts';
 import type { Question } from '../../content/questions.ts';
 
-export const QUIZ_LENGTH = 10;
-export const QUIZ_STORAGE_KEY = 'lovehb.avocado.v3';
+export const QUIZ_LENGTH = 3;
+export const QUIZ_STORAGE_KEY = 'lovehb.avocado.v4';
 export type QuizCard = { id: string; order: number[] };
 export type QuizRun = { cards: QuizCard[]; answers: number[]; index: number };
 
